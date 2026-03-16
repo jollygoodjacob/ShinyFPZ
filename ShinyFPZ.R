@@ -8,6 +8,7 @@ library(RColorBrewer)
 library(DT)
 library(tidyr)
 library(leaflet)
+library(geojsonsf)
 
 ui <- fluidPage(
   titlePanel("ShinyFPZ"),
@@ -105,7 +106,24 @@ ui <- fluidPage(
           uiOutput("map_status"),
           leafletOutput("fpz_map", height = "700px"),
           br(),
-          verbatimTextOutput("map_diag")
+          fluidRow(
+            column(
+              width = 6,
+              div(
+                style = "border: 1px solid #ddd; border-radius: 6px; padding: 10px; min-height: 360px;",
+                h4("Map Diagnostics"),
+                verbatimTextOutput("map_diag")
+              )
+            ),
+            column(
+              width = 6,
+              div(
+                style = "border: 1px solid #ddd; border-radius: 6px; padding: 10px; min-height: 360px;",
+                h4("PCA Biplot"),
+                plotOutput("pca_plot_map", height = "300px")
+              )
+            )
+          )
         )
       )
     )
@@ -512,6 +530,19 @@ server <- function(input, output, session) {
     print(pca_plot_obj())
   })
   
+  output$pca_plot_map <- renderPlot({
+    req(pca_plot_obj())
+    print(
+      pca_plot_obj() +
+        guides(color = "none") +
+        theme(
+          plot.title = element_text(size = 12, hjust = 0.5, face = "bold"),
+          axis.title = element_text(size = 10, face = "bold"),
+          axis.text = element_text(size = 8)
+        )
+    )
+  })
+  
   output$sil_table <- renderDT({
     req(analysis())
     
@@ -652,7 +683,7 @@ server <- function(input, output, session) {
           )
       }
       
-     m
+      m
       
     } else {
       validate(
