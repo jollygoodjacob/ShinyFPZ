@@ -1,0 +1,160 @@
+# ShinyFPZ
+
+ShinyFPZ is an interactive R Shiny application for exploring and
+classifying Functional Process Zones (FPZs) from river network datasets
+using hydrogeomorphic variables.
+The app provides a streamlined workflow for clustering river segments,
+visualizing results, and exporting both analytical and spatial outputs.
+
+------------------------------------------------------------------------
+
+## Overview
+
+Functional Process Zones (FPZs) represent distinct hydrogeomorphic
+segments of river networks defined by combinations of environmental
+variables such as elevation, valley width, sinuosity, and geological
+context.
+ShinyFPZ enables users to:
+
+-   Upload a spatial dataset (zipped shapefile)
+-   Select hydrogeomorphic variables for clustering
+-   Perform FPZ classification using hierarchical clustering
+-   Explore clustering diagnostics
+-   Visualize FPZ results on an interactive map
+-   Export figures, tables, and spatial outputs
+
+The app is designed for rapid exploratory analysis and communication of
+FPZ classifications.
+
+------------------------------------------------------------------------
+
+## Key Features
+
+Interactive FPZ Classification
+
+-   Hierarchical clustering using Ward.D2
+-   Gower distance to support mixed numeric and categorical variables
+-   Two clustering workflows:
+    -   Silhouette-based selection of cluster number
+    -   Tree height cutoff
+
+Visualization Tools
+
+ShinyFPZ generates several diagnostic plots:
+
+-   Silhouette plot
+-   Hierarchical dendrogram
+-   PCA biplot showing relationships among hydrogeomorphic variables
+-   Interactive Leaflet map displaying FPZ classifications
+
+Interactive Mapping
+
+The Leaflet map allows users to:
+
+-   View FPZ classes spatially
+-   Explore results for point or line datasets
+-   Inspect map diagnostics including feature counts and geometry types
+
+Exportable Outputs
+
+Users can export:
+
+-   Silhouette plot (.png)
+-   Dendrogram (.png)
+-   PCA biplot (.png)
+-   Silhouette table (.csv)
+-   Cluster summary (.csv)
+-   Spatial output (.gpkg)
+
+------------------------------------------------------------------------
+
+## Input Data Requirements
+
+ShinyFPZ expects a zipped shapefile containing:
+
+-   .shp
+-   .shx
+-   .dbf
+-   .prj
+
+The dataset should contain hydrogeomorphic attributes used for FPZ
+classification.
+Example variables often used include:
+
+  Variable      Description
+  ------------- ----------------------
+  ELE           Elevation
+  PRE           Precipitation
+  GEO           Geological category
+  VW            Valley width
+  VFW           Valley floor width
+  RAT           Valley width ratio
+  SIN           Channel sinuosity
+  RVS/LVS/DVS   Valley slope metrics
+
+Both point and line geometries are supported.
+
+------------------------------------------------------------------------
+
+## FPZ Clustering Workflow
+
+1.  Upload a zipped shapefile
+2.  Select hydrogeomorphic variables
+3.  Specify clustering options
+4.  Run FPZ classification
+5.  Inspect diagnostics:
+    -   silhouette curve
+    -   dendrogram
+    -   PCA biplot
+6.  Explore FPZ spatial patterns on the interactive map
+7.  Export results
+
+------------------------------------------------------------------------
+
+## Installation
+
+Clone the repository:
+
+    git clone https://github.com/yourusername/ShinyFPZ.git
+
+Install required R packages:
+
+    install.packages(c(
+      "shiny",
+      "sf",
+      "dplyr",
+      "cluster",
+      "ggplot2",
+      "FactoMineR",
+      "RColorBrewer",
+      "DT",
+      "tidyr",
+      "leaflet"
+    ))
+
+Run the app:
+
+    shiny::runApp("ShinyFPZ")
+
+------------------------------------------------------------------------
+
+## Example Use Cases
+
+ShinyFPZ is useful for:
+
+-   River network classification
+-   Exploratory hydrogeomorphic analysis
+-   Environmental stratification of watersheds
+-   Supporting biodiversity and habitat studies
+-   FPZ mapping for restoration planning
+
+------------------------------------------------------------------------
+
+## Project Status
+
+ShinyFPZ is under active development. Planned improvements include:
+
+-   Additional clustering methods
+-   Expanded map styling options
+-   Integration with river network datasets
+-   Improved FPZ diagnostic tools

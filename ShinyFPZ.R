@@ -447,12 +447,57 @@ server <- function(input, output, session) {
   
   dend_plot_obj <- reactive({
     req(analysis())
+    
+    hc <- analysis()$hc
+    k_best <- analysis()$k_best
+    
     function() {
+      op <- par(no.readonly = TRUE)
+      on.exit(par(op))
+      
+      par(
+        mar = c(4, 4, 3, 2) + 0.1,
+        lwd = 1.3,
+        cex.main = 1.1,
+        cex.lab = 1,
+        cex.axis = 0.9
+      )
+      
       plot(
-        analysis()$hc,
+        hc,
         main = "Hierarchical clustering dendrogram",
         xlab = "",
-        sub = ""
+        sub = "",
+        ylab = "Height",
+        hang = -1,
+        labels = FALSE
+      )
+      
+      if (input$cluster_method == "cutoff") {
+        cutoff_height <- input$cut_prop * max(hc$height)
+        
+        abline(
+          h = cutoff_height,
+          col = "red",
+          lty = 2,
+          lwd = 2
+        )
+        
+        usr <- par("usr")
+        text(
+          x = usr[1] + 0.02 * diff(usr[1:2]),
+          y = cutoff_height,
+          labels = paste0("Cutoff = ", round(cutoff_height, 3)),
+          pos = 3,
+          col = "red",
+          cex = 0.9
+        )
+      }
+      
+      rect.hclust(
+        hc,
+        k = k_best,
+        border = "blue"
       )
     }
   })
