@@ -22,7 +22,7 @@ ui <- fluidPage(
     
     img(
       src = "ShinyFPZ_hex_horizontal.png",
-      height = "120px",
+      height = "180px",
       style = "margin-right:15px;"
     ),
     
@@ -30,7 +30,7 @@ ui <- fluidPage(
       h2("ShinyFPZ", style="margin-bottom:0px;"),
       p("Interactive Functional Process Zone classification",
         style="margin-top:0px; color:#555;"),
-      style = "line-height:1.2;"
+      style = "line-height:1.5;"
     )
   ),
   
@@ -113,25 +113,34 @@ ui <- fluidPage(
         tabPanel(
           "Silhouette",
           verbatimTextOutput("best_k_text"),
-          plotOutput("sil_plot", height = "500px"),
+          plotOutput("sil_plot", height = "650px"),
           br(),
           DTOutput("sil_table")
         ),
         
-        tabPanel("Dendrogram", plotOutput("dend_plot", height = "500px")),
-        tabPanel("PCA Biplot", plotOutput("pca_plot", height = "650px")),
-        tabPanel("Cluster Summary", DTOutput("cluster_table")),
+        tabPanel("Dendrogram", plotOutput("dend_plot", height = "600px")),
+        
+        tabPanel(
+          "PCA Biplot",
+          plotOutput("pca_plot", height = "600px"),
+          br(),
+          div(
+            style = "border: 1px solid #ddd; border-radius: 6px; padding: 10px;",
+            h4("Cluster Summary"),
+            DTOutput("cluster_table")
+          )
+        ),
         
         tabPanel(
           "Leaflet Map",
           uiOutput("map_status"),
-          leafletOutput("fpz_map", height = "700px"),
+          leafletOutput("fpz_map", height = "600px"),
           br(),
           fluidRow(
             column(
               width = 6,
               div(
-                style = "border: 1px solid #ddd; border-radius: 6px; padding: 10px; min-height: 360px;",
+                style = "border: 1px solid #ddd; border-radius: 6px; padding: 10px; min-height: 300px;",
                 h4("Map Diagnostics"),
                 verbatimTextOutput("map_diag")
               )
@@ -139,7 +148,7 @@ ui <- fluidPage(
             column(
               width = 6,
               div(
-                style = "border: 1px solid #ddd; border-radius: 6px; padding: 10px; min-height: 360px;",
+                style = "border: 1px solid #ddd; border-radius: 6px; padding: 10px; min-height: 300px;",
                 h4("PCA Biplot"),
                 plotOutput("pca_plot_map", height = "300px")
               )
@@ -506,7 +515,7 @@ server <- function(input, output, session) {
         
         usr <- par("usr")
         text(
-          x = usr[1] + 0.02 * diff(usr[1:2]),
+          x = usr[1] + 0.5 * diff(usr[1:2]),
           y = cutoff_height,
           labels = paste0("Cutoff = ", round(cutoff_height, 3)),
           pos = 3,
@@ -625,7 +634,7 @@ server <- function(input, output, session) {
     req(analysis())
     datatable(
       analysis()$cluster_summary,
-      options = list(pageLength = 10),
+      options = list(pageLength = 10, dom = "tip"),
       rownames = FALSE
     )
   })
