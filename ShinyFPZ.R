@@ -11,7 +11,28 @@ library(leaflet)
 library(geojsonsf)
 
 ui <- fluidPage(
-  titlePanel("ShinyFPZ"),
+  div(
+    style = "
+    display:flex;
+    align-items:center;
+    border-bottom:1px solid #ddd;
+    padding-bottom:10px;
+    margin-bottom:15px;
+  ",
+    
+    img(
+      src = "ShinyFPZ_hex_horizontal.png",
+      height = "120px",
+      style = "margin-right:15px;"
+    ),
+    
+    div(
+      h2("ShinyFPZ", style="margin-bottom:0px;"),
+      p("Interactive Functional Process Zone classification",
+        style="margin-top:0px; color:#555;"),
+      style = "line-height:1.2;"
+    )
+  ),
   
   sidebarLayout(
     sidebarPanel(
