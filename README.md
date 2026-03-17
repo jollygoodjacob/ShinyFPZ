@@ -2,7 +2,7 @@
   <img src="https://github.com/jollygoodjacob/ShinyFPZ/blob/main/imgs/ShinyFPZ_hex_horizontal.png" width="30%" alt="Space GIF">
 </div>
 
-ShinyFPZ is an interactive R Shiny application for exploring and
+**ShinyFPZ** is an interactive R Shiny application for exploring and
 classifying Functional Process Zones (FPZs) from river network datasets
 using hydrogeomorphic variables.
 The app provides a streamlined workflow for clustering river segments,
@@ -16,7 +16,7 @@ Functional Process Zones (FPZs) represent distinct hydrogeomorphic
 segments of river networks defined by combinations of environmental
 variables such as elevation, valley width, sinuosity, and geological
 context.
-ShinyFPZ enables users to:
+**ShinyFPZ** enables users to:
 
 -   Upload a spatial dataset (zipped shapefile)
 -   Select hydrogeomorphic variables for clustering
