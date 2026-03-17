@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://github.com/jollygoodjacob/ShinyFPZ/blob/main/imgs/ShinyFPZ_hex_horizontal.png" width="30%" alt="Space GIF">
+  <img src="https://github.com/jollygoodjacob/ShinyFPZ/blob/main/www/ShinyFPZ_hex_horizontal.png" width="30%" alt="Space GIF">
 </div>
 
 **ShinyFPZ** is an interactive R Shiny application for exploring and
