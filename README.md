@@ -12,6 +12,7 @@ release](https://img.shields.io/github/v/release/jollygoodjacob/ShinyFPZ)](https
 [![GitHub
 commits](https://img.shields.io/github/commits-since/jollygoodjacob/ShinyFPZ/v1.0.0)](https://github.com/jollygoodjacob/ShinyFPZ/commits)
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/jollygoodjacob/ShinyFPZ/graphs/commit-activity)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19241970.svg)](https://doi.org/10.5281/zenodo.19241970)
 
 **ShinyFPZ** is an interactive R Shiny application for exploring and
 classifying Functional Process Zones (FPZs) from river network datasets
