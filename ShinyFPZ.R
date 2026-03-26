@@ -27,9 +27,11 @@ ui <- fluidPage(
     ),
     
     div(
-      h2("ShinyFPZ", style="margin-bottom:0px;"),
-      p("Interactive Functional Process Zone classification",
-        style="margin-top:0px; color:#555;"),
+      h2("ShinyFPZ", style = "margin-bottom:0px;"),
+      p(
+        "Interactive Functional Process Zone classification",
+        style = "margin-top:0px; color:#555;"
+      ),
       style = "line-height:1.5;"
     )
   ),
@@ -162,6 +164,15 @@ ui <- fluidPage(
 
 server <- function(input, output, session) {
   
+  plot_text_theme <- theme(
+    plot.title = element_text(size = 18, hjust = 0.5, face = "bold"),
+    plot.subtitle = element_text(size = 14, hjust = 0.5),
+    axis.title = element_text(size = 16, face = "bold"),
+    axis.text = element_text(size = 13),
+    legend.title = element_text(size = 14, face = "bold"),
+    legend.text = element_text(size = 12)
+  )
+  
   shp_data <- reactive({
     req(input$zipfile)
     
@@ -231,8 +242,10 @@ server <- function(input, output, session) {
     dat_tbl <- sf::st_drop_geometry(dat0)
     
     validate(
-      need(input$geo_var %in% names(dat_tbl),
-           "Selected geology variable is not in the chosen variables.")
+      need(
+        input$geo_var %in% names(dat_tbl),
+        "Selected geology variable is not in the chosen variables."
+      )
     )
     
     dat_work <- dat_tbl
@@ -465,11 +478,7 @@ server <- function(input, output, session) {
           x = "Number of FPZs (k)",
           y = "Average silhouette width"
         ) +
-        theme(
-          plot.title = element_text(hjust = 0.5, face = "bold"),
-          plot.subtitle = element_text(hjust = 0.5),
-          axis.title = element_text(face = "bold")
-        )
+        plot_text_theme
     } else {
       NULL
     }
@@ -486,11 +495,11 @@ server <- function(input, output, session) {
       on.exit(par(op))
       
       par(
-        mar = c(4, 4, 3, 2) + 0.1,
+        mar = c(5, 5, 4, 2) + 0.1,
         lwd = 1.3,
-        cex.main = 1.1,
-        cex.lab = 1,
-        cex.axis = 0.9
+        cex.main = 1.5,
+        cex.lab = 1.35,
+        cex.axis = 1.2
       )
       
       plot(
@@ -520,7 +529,7 @@ server <- function(input, output, session) {
           labels = paste0("Cutoff = ", round(cutoff_height, 3)),
           pos = 3,
           col = "red",
-          cex = 0.9
+          cex = 1.1
         )
       }
       
@@ -568,11 +577,7 @@ server <- function(input, output, session) {
         color = "FPZ"
       ) +
       theme_bw() +
-      theme(
-        plot.title = element_text(hjust = 0.5, face = "bold"),
-        axis.title = element_text(face = "bold"),
-        legend.title = element_text(face = "bold")
-      )
+      plot_text_theme
   })
   
   output$best_k_text <- renderText({
@@ -591,6 +596,7 @@ server <- function(input, output, session) {
     if (!is.null(analysis()$sil_df)) {
       print(sil_plot_obj())
     } else {
+      par(cex.main = 1.5, cex.lab = 1.35, cex.axis = 1.2)
       plot(analysis()$sil, border = NA, main = "Silhouette plot")
     }
   })
@@ -611,9 +617,9 @@ server <- function(input, output, session) {
       pca_plot_obj() +
         guides(color = "none") +
         theme(
-          plot.title = element_text(size = 12, hjust = 0.5, face = "bold"),
-          axis.title = element_text(size = 10, face = "bold"),
-          axis.text = element_text(size = 8)
+          plot.title = element_text(size = 14, hjust = 0.5, face = "bold"),
+          axis.title = element_text(size = 13, face = "bold"),
+          axis.text = element_text(size = 11)
         )
     )
   })
@@ -788,9 +794,10 @@ server <- function(input, output, session) {
       req(analysis())
       
       if (!is.null(analysis()$sil_df)) {
-        ggplot2::ggsave(file, plot = sil_plot_obj(), width = 8, height = 5, dpi = 300)
+        ggplot2::ggsave(file, plot = sil_plot_obj(), width = 8, height = 5, dpi = 600)
       } else {
-        png(file, width = 8, height = 5, units = "in", res = 300)
+        png(file, width = 8, height = 5, units = "in", res = 600)
+        par(cex.main = 1.5, cex.lab = 1.35, cex.axis = 1.2)
         plot(analysis()$sil, border = NA, main = "Silhouette plot")
         dev.off()
       }
@@ -801,7 +808,7 @@ server <- function(input, output, session) {
     filename = function() "dendrogram.png",
     content = function(file) {
       req(dend_plot_obj())
-      png(file, width = 8, height = 5, units = "in", res = 300)
+      png(file, width = 8, height = 5, units = "in", res = 600)
       dend_plot_obj()()
       dev.off()
     }
@@ -811,7 +818,7 @@ server <- function(input, output, session) {
     filename = function() "pca_biplot.png",
     content = function(file) {
       req(pca_plot_obj())
-      ggplot2::ggsave(file, plot = pca_plot_obj(), width = 8, height = 6.5, dpi = 300)
+      ggplot2::ggsave(file, plot = pca_plot_obj(), width = 8, height = 6.5, dpi = 600)
     }
   )
   
