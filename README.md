@@ -1,6 +1,6 @@
-::: {align="center"}
-<img src="https://github.com/jollygoodjacob/ShinyFPZ/blob/main/www/ShinyFPZ_hex_horizontal.png" alt="Space GIF" width="30%"/>
-:::
+<div align="center">
+  <img src="https://github.com/jollygoodjacob/ShinyFPZ/blob/main/www/ShinyFPZ_hex_horizontal.png" alt="ShinyFPZ logo" width="30%"/>
+</div>
 
 [![Open Source Love
 svg1](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/)
