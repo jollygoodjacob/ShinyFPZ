@@ -2,6 +2,8 @@
   <img src="https://github.com/jollygoodjacob/ShinyFPZ/blob/main/www/ShinyFPZ_hex_horizontal.png" width="30%" alt="Space GIF">
 </div>
 
+[![Open Source Love svg1](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/) [![made-with-R](https://img.shields.io/badge/Made%20with-R-ffd040.svg)](https://www.r-project.org/) [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://mit-license.org/) [![GitHub release](https://img.shields.io/github/v/release/jollygoodjacob/ShinyFPZ)](https://github.com/jollygoodjacob/ShinyFPZ/releases) [![GitHub commits](https://img.shields.io/github/commits-since/jollygoodjacob/ShinyFPZ/v1.0.0)](https://github.com/jollygoodjacob/ShinyFPZ/commits) [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/jollygoodjacob/ShinyFPZ/graphs/commit-activity)
+
 **ShinyFPZ** is an interactive R Shiny application for exploring and
 classifying Functional Process Zones (FPZs) from river network datasets
 using hydrogeomorphic variables obtained from the OpenRES QGIS plugin.
