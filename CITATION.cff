@@ -1,0 +1,19 @@
+cff-version: 1.0.0
+title: "ShinyFPZ: A R Shiny app to aid in Functional Process Zone classification"
+version: 1.0.0
+license: "MIT"
+type: software
+abstract: "ShinyFPZ is an interactive R Shiny application for exploring and classifying Functional Process Zones (FPZs) from river network datasets using hydrogeomorphic variables obtained from the OpenRES QGIS plugin. The app provides a streamlined workflow for clustering river segments, visualizing results, and exporting both analytical and spatial outputs."
+message: "If you use this software, please cite it as below."
+authors:
+  - given-names: Jacob
+    family-names: Nesslage
+    affiliation: University of California, Merced
+    orcid: "https://orcid.org/0000-0001-9219-8365"
+keywords:
+  - functional process zone
+  - riverine ecosystem synthesis
+  - river classification
+  - river ecology
+  - stream ecology
+  - hydrogeomorphology
